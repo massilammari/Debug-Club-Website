@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="page_title">Debug Club</title>
+
+  <!-- Meta Tags for SEO, Social Sharing & UI -->
+  <meta name="description"
+    content="Official website of Debug Club. Learn programming, robotics, design, compete in challenges, and track your rank live on our mobile application.">
+  <meta name="theme-color" content="#070709">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Debug Club">
+  <meta property="og:description"
+    content="Scientific student club focused on coding, workshops, tournaments, and social events.">
+  <meta property="og:image" content="images/logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Debug Club">
+  <meta name="twitter:description"
+    content="Scientific student club focused on coding, workshops, tournaments, and social events.">
+  <meta name="twitter:image" content="images/logo.jpg">
+
+  <!-- Favicon Icon -->
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg" sizes="32x32">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+  <!-- Background SVG Graphic -->
+  <svg class="bg-graphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"
+    preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="top-glow" cx="15%" cy="10%" r="45%">
+        <stop offset="0%" stop-color="#e61e4d" stop-opacity="0.25" />
+        <stop offset="100%" stop-color="#070709" stop-opacity="0" />
+      </radialGradient>
+
+      <radialGradient id="bottom-glow" cx="85%" cy="90%" r="45%">
+        <stop offset="0%" stop-color="#b00f33" stop-opacity="0.3" />
+        <stop offset="100%" stop-color="#070709" stop-opacity="0" />
+      </radialGradient>
+
+      <pattern id="dot-grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1.5" fill="#e61e4d" fill-opacity="0.35" />
+      </pattern>
+
+      <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+        <stop offset="15%" stop-color="#e61e4d" stop-opacity="1" />
+        <stop offset="85%" stop-color="#e61e4d" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#500718" stop-opacity="0.3" />
+      </linearGradient>
+    </defs>
+
+    <path d="M -100,200 C 500,100 1200,300 2020,150" fill="none" stroke="#2a121d" stroke-width="2"
+      stroke-opacity="0.6" />
+    <path d="M -100,850 C 600,920 1300,780 2020,880" fill="none" stroke="#2a121d" stroke-width="2"
+      stroke-opacity="0.6" />
+
+    <circle cx="150" cy="150" r="280" fill="none" stroke="#e61e4d" stroke-width="1.5" stroke-opacity="0.3" />
+    <circle cx="1700" cy="900" r="240" fill="none" stroke="#e61e4d" stroke-width="1.5" stroke-opacity="0.25" />
+
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#top-glow)" />
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#bottom-glow)" />
+
+    <rect x="100" y="80" width="120" height="80" fill="url(#dot-grid)" />
+    <rect x="1700" y="880" width="120" height="80" fill="url(#dot-grid)" />
+
+    <path d="M -100,100 C 400,20 1100,220 2020,50" fill="none" stroke="url(#wave-gradient)" stroke-width="4"
+      stroke-linecap="round" />
+    <path d="M -100,950 C 500,1050 1200,820 2020,920" fill="none" stroke="url(#wave-gradient)" stroke-width="4"
+      stroke-linecap="round" />
+  </svg>
+
+  <!-- Header Navigation -->
+  <header>
+    <a href="index.html" class="brand-logo" aria-label="Debug Club Home">
+      <img src="images/logo.jpg" alt="Debug Club Logo">
+      <span>Debug Club</span>
+    </a>
+
+    <!-- Navigation Menu (Collapsible on Mobile) -->
+    <nav id="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#events" data-i18n="nav_events">Events</a></li>
+        <li><a href="#ranks" data-i18n="nav_ranks">Top Members</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+        <li><a href="#join-us" data-i18n="nav_join">Join Us</a></li>
+        <li><a href="#contact-us" data-i18n="nav_contact">Contact Us</a></li>
+      </ul>
+    </nav>
+
+    <!-- Top Action Bar (Language Switcher + Mobile Hamburger Toggle) -->
+    <div class="header-actions">
+      <button type="button" id="lang-switch-btn" class="lang-btn">العربية</button>
+      <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main>
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <h1 data-i18n="hero_title">Welcome to Debug Club</h1>
+      <p data-i18n="hero_desc">Welcome to our campus community! Whether you want to code, solve challenges, shoot video, create designs, or just play games and break the university routine—you're in the right place. Join our hands-on workshops, free talks, and competitions, and build cool things with us.</p>
+
+      <div class="cta-buttons">
+        <a href="#join-us" data-i18n="cta_get_started">Register Now</a>
+        <a href="https://drive.google.com/drive/u/4/folders/1DNHGJes0Yd9hOigg_xeOJVihc1uHAYqv" target="_blank" rel="noopener noreferrer" data-i18n="cta_download_apk">Download APK via Google Drive</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2 data-i18n="about_title">About Debug Club</h2>
+      <div class="about-card">
+        <p data-i18n="about_p1">We are Debug Club, a scientific student club dedicated to learning, creating, and having fun together. We organize practical classes, hands-on workshops, and competitions covering a wide range of fields—including programming, robotics, PC hardware components, graphic design, photography, videography, editing, and competitive problem-solving.</p>
+        <p data-i18n="about_p2">Beyond technical skills, we also organize gaming events and social activities where members can play together, connect, and de-stress from academic life. That is just a small glimpse of what we do!</p>
+
+        <!-- Visual Club Tracks / Tags -->
+        <div class="about-tags">
+          <span class="about-tag">💻 Programming</span>
+          <span class="about-tag">🤖 Robotics</span>
+          <span class="about-tag">🎨 Graphic Design</span>
+          <span class="about-tag">🎬 Video Editing</span>
+          <span class="about-tag">🎮 Gaming</span>
+          <span class="about-tag">🧠 Problem Solving</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Section (Divided into Upcoming Events & Events We Have Organized) -->
+    <section id="events">
+      <h2 data-i18n="events_main_title">Our Events</h2>
+
+      <!-- Events Filter Tabs (Horizontal Scrollable on Mobile) -->
+      <div class="events-tabs" role="tablist" aria-label="Event category tabs">
+        <button type="button" class="event-tab-btn active" data-filter="all" data-i18n="events_filter_all">All Events</button>
+        <button type="button" class="event-tab-btn" data-filter="upcoming" data-i18n="events_filter_upcoming">Upcoming Events</button>
+        <button type="button" class="event-tab-btn" data-filter="past" data-i18n="events_filter_past">Events We've Organized</button>
+      </div>
+
+      <!-- Part 1: Upcoming Events Subgroup -->
+      <div id="upcoming-events-wrapper" class="events-subgroup">
+        <h3 class="events-subgroup-title" data-i18n="upcoming_events_title">Upcoming Events</h3>
+        <div id="upcoming-events-container" class="events-grid">
+          <!-- Upcoming events dynamically rendered via script.js from Supabase -->
+        </div>
+      </div>
+
+      <!-- Part 2: Events We Have Organized (Past Events) Subgroup -->
+      <div id="past-events-wrapper" class="events-subgroup">
+        <h3 class="events-subgroup-title" data-i18n="past_events_title">Events We Have Organized</h3>
+        <div id="past-events-container" class="events-grid">
+          <!-- Past / Organized events dynamically rendered via script.js from Supabase -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Top Members Hall of Fame Section (Modern Podium & Showcase) -->
+    <section id="ranks">
+      <h2 data-i18n="ranks_title">Top Club Members</h2>
+      <p class="section-subtitle" data-i18n="ranks_subtitle">Celebrating our most active members, contributors, and high achievers.</p>
+
+      <!-- Dynamic Podium & Leaderboard Showcase Container -->
+      <div id="leaderboard-podium" class="podium-container">
+        <!-- Dynamic member showcase loaded via script.js from Supabase profiles -->
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <h2 data-i18n="faq_title">Frequently Asked Questions</h2>
+
+      <details>
+        <summary data-i18n="faq_q1">Do I need prior coding experience to join?</summary>
+        <p data-i18n="faq_a1">No! We welcome beginners and experienced developers alike across all our tracks (programming, robotics, design, editing, and gaming).</p>
+      </details>
+
+      <details>
+        <summary data-i18n="faq_q2">What will I gain by joining the club?</summary>
+        <p data-i18n="faq_a2">You will gain hands-on technical skills across coding, hardware, and creative design, build real projects with a passionate team, compete in hackathons and club tournaments, earn XP on our mobile app leaderboard, and make lasting friendships that go beyond university walls.</p>
+      </details>
+
+      <details>
+        <summary data-i18n="faq_q3">How does the ranking system work on the mobile app?</summary>
+        <p data-i18n="faq_a3">You earn points and XP by participating in workshops, competing in challenges, and joining club activities.</p>
+      </details>
+
+      <details>
+        <summary data-i18n="faq_q4">Will joining the club help my professional career?</summary>
+        <p data-i18n="faq_a4">Absolutely. You will build a solid portfolio through hands-on team projects, gain experience using modern industry tools, and develop critical soft skills like leadership, teamwork, and problem-solving that set you apart in tech job interviews.</p>
+      </details>
+
+      <details>
+        <summary data-i18n="faq_q5">Do members receive certificates for participation or training?</summary>
+        <p data-i18n="faq_a5">Yes, active members receive recognized certificates of participation upon completing specialized workshops, bootcamps, and hackathons.</p>
+      </details>
+
+      <details>
+        <summary data-i18n="faq_q6">How can I host a workshop or manage an event within the club?</summary>
+        <p data-i18n="faq_a6">We actively encourage knowledge sharing! Any member with a passion or skill can submit a workshop proposal or event initiative. Our core team provides full logistical, technical, and organizational support to bring your idea to life.</p>
+      </details>
+    </section>
+
+    <!-- Join Us Section -->
+    <section id="join-us">
+      <h2 data-i18n="join_title">Join Us</h2>
+      <p data-i18n="join_desc">Fill out the form below or register through our mobile app to become an official member.</p>
+
+      <form id="join-club-form" class="club-form">
+        <div>
+          <label for="fullname" data-i18n="label_fullname">Full Name (Latin):</label>
+          <input type="text" id="fullname" name="fullname" placeholder="e.g. Ammari Massil" data-i18n-placeholder="ph_fullname" autocomplete="name" required>
+        </div>
+
+        <div>
+          <label for="fullname_ar" data-i18n="label_fullname_ar">Full Name (Arabic):</label>
+          <input type="text" id="fullname_ar" name="fullname_ar" placeholder="مثال: عماري ماسيل" data-i18n-placeholder="ph_fullname_ar" required>
+        </div>
+
+        <div>
+          <label for="student_id" data-i18n="label_student_id">Student ID Card (Matricule):</label>
+          <input type="text" id="student_id" name="student_id" placeholder="e.g. 232335012345" data-i18n-placeholder="ph_student_id" inputmode="numeric" pattern="[0-9]*" required>
+        </div>
+
+        <div>
+          <label for="email" data-i18n="label_email">Email Address:</label>
+          <div class="input-with-action">
+            <input type="email" id="email" name="email" placeholder="e.g. debugclub.fsesnv@univ-biskra.dz" data-i18n-placeholder="ph_email" autocomplete="email" required>
+            <button type="button" id="send-otp-btn" class="otp-button" data-i18n="btn_send_code">Send Code</button>
+          </div>
+        </div>
+
+        <div id="otp-group" style="display: none;">
+          <label for="otp" data-i18n="label_otp">Verification Code (sent to your email):</label>
+          <input type="text" id="otp" name="otp" placeholder="Enter 6-digit code" data-i18n-placeholder="ph_otp" inputmode="numeric" maxlength="6">
+        </div>
+
+        <div>
+          <label for="phone"><span data-i18n="label_phone">Phone Number:</span> <span class="optional-tag" data-i18n="tag_optional">(Optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 0661234567" data-i18n-placeholder="ph_phone" inputmode="tel" autocomplete="tel">
+        </div>
+
+        <div>
+          <label for="major" data-i18n="label_major">Major (Field of Study, Specialty in university):</label>
+          <input type="text" id="major" name="major" placeholder="e.g. Faculty of Science and Technology" data-i18n-placeholder="ph_major" required>
+        </div>
+
+        <div>
+          <label for="year" data-i18n="label_year">Study Year:</label>
+          <select id="year" name="year" required>
+            <option value="" disabled selected data-i18n="opt_choose_year">Select Study Year</option>
+            <option value="L1">L1</option>
+            <option value="L2">L2</option>
+            <option value="L3">L3</option>
+            <option value="M1">M1</option>
+            <option value="M2">M2</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="department" data-i18n="label_department">Department:</label>
+          <select id="department" name="department" required>
+            <option value="" disabled selected data-i18n="opt_choose_dept">Select Department</option>
+            <option value="Problem Solving" data-i18n="dept_ps">Problem Solving</option>
+            <option value="Social Media" data-i18n="dept_sm">Social Media</option>
+            <option value="Robotic" data-i18n="dept_robotic">Robotic</option>
+            <option value="Forms" data-i18n="dept_forms">Forms & Logistics</option>
+            <option value="Others" data-i18n="dept_others">Others</option>
+          </select>
+        </div>
+
+        <!-- Displays only if Social Media is selected -->
+        <div id="sm-subfield-group" style="display: none;">
+          <label for="social_sub" data-i18n="label_social_sub">Social Media Role:</label>
+          <select id="social_sub" name="social_sub">
+            <option value="" disabled selected data-i18n="opt_choose_role">Select Role</option>
+            <option value="Shooting" data-i18n="sm_shooting">Shooting</option>
+            <option value="Editing" data-i18n="sm_editing">Editing</option>
+            <option value="Design" data-i18n="sm_design">Design</option>
+          </select>
+        </div>
+
+        <!-- Displays only if Others is selected -->
+        <div id="other-dept-group" style="display: none;">
+          <label for="other_dept_spec" data-i18n="label_other_dept">Specify Department:</label>
+          <input type="text" id="other_dept_spec" name="other_dept_spec" placeholder="Specify your desired department" data-i18n-placeholder="ph_other_dept">
+        </div>
+
+        <div>
+          <label for="whyJoin"><span data-i18n="label_why_join">Why do you want to join us?:</span> <span class="optional-tag" data-i18n="tag_optional">(Optional)</span></label>
+          <input type="text" id="whyJoin" name="whyJoin" placeholder="e.g. I love programming!" data-i18n-placeholder="ph_why_join" maxlength="150">
+        </div>
+
+        <div>
+          <label for="clubExp" data-i18n="label_club_exp">Do you have previous experience with clubs?:</label>
+          <input type="text" id="clubExp" name="clubExp" placeholder="If yes, tell us more about your experience" data-i18n-placeholder="ph_club_exp" maxlength="150" required>
+        </div>
+
+        <div>
+          <label for="portfolio"><span data-i18n="label_portfolio">Portfolio Link:</span> <span class="optional-tag" data-i18n="tag_optional">(Optional)</span></label>
+          <input type="url" id="portfolio" name="portfolio" placeholder="e.g. https://github.com/username" data-i18n-placeholder="ph_portfolio">
+        </div>
+
+        <button type="submit" id="submit-btn" disabled data-i18n="btn_submit_app">Submit Application</button>
+      </form>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-us">
+      <h2 data-i18n="contact_title">Contact Us</h2>
+      <p data-i18n="contact_desc">Connect with us on our official social channels or visit us on campus:</p>
+
+      <address>
+        <p><span data-i18n="contact_email_lbl">Email:</span> <a href="mailto:clubdebug@gmail.com">clubdebug@gmail.com</a></p>
+        <p><span data-i18n="contact_loc_lbl">Location:</span> <span data-i18n="contact_loc_val">University Mohamed Khider Biskra</span></p>
+      </address>
+
+      <ul>
+        <li><a href="https://web.facebook.com/DebugClubFB?locale=fr_FR" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="https://www.instagram.com/clubdebug?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+        <li><a href="https://www.tiktok.com/@debug_club?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+        <li><a href="https://www.youtube.com/@Debugclub" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" id="back-to-top-btn" class="back-to-top-btn" aria-label="Back to top">↑</button>
+
+  <!-- Footer -->
+  <footer>
+    <p data-i18n="footer_copy">&copy; 2026 Debug Club. All rights reserved.</p>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>

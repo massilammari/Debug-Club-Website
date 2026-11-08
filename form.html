@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-snap">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="event_reg_title">Event Registration - Debug Club</title>
+
+  <!-- Meta Tags for SEO, Social Sharing & UI -->
+  <meta name="description" content="Register for upcoming Debug Club events, workshops, and competitions.">
+  <meta name="theme-color" content="#070709">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Event Registration - Debug Club">
+  <meta property="og:description" content="Secure your spot for the upcoming event with Debug Club.">
+  <meta property="og:image" content="images/logo.jpg">
+
+  <!-- Favicon Icon -->
+  <link rel="icon" id="titlepic" href="images/logo.jpg" type="image/jpeg" sizes="32x32">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="page-standalone-form">
+
+  <!-- Background SVG Graphic -->
+  <svg class="bg-graphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"
+    preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="top-glow" cx="15%" cy="10%" r="45%">
+        <stop offset="0%" stop-color="#e61e4d" stop-opacity="0.25" />
+        <stop offset="100%" stop-color="#070709" stop-opacity="0" />
+      </radialGradient>
+      <radialGradient id="bottom-glow" cx="85%" cy="90%" r="45%">
+        <stop offset="0%" stop-color="#b00f33" stop-opacity="0.3" />
+        <stop offset="100%" stop-color="#070709" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#top-glow)" />
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#bottom-glow)" />
+  </svg>
+
+  <!-- Header Navigation -->
+  <header>
+    <a href="index.html" class="brand-logo" aria-label="Debug Club Home">
+      <img src="images/logo.jpg" alt="Debug Club Logo">
+      <span>Debug Club</span>
+    </a>
+    <nav aria-label="Registration navigation">
+      <ul>
+        <li><a href="index.html" data-i18n="back_home">← Back to Home</a></li>
+        <li><button type="button" id="lang-switch-btn" class="lang-btn">العربية</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="form-main-wrapper">
+    <section class="form-section-container">
+      <h2 id="event-title" data-i18n="event_reg_heading">Event Registration</h2>
+      <p id="event-subtitle" class="form-subtitle" data-i18n="event_reg_desc">
+        Complete the form below to secure your spot for the event.
+      </p>
+
+      <!-- Status banner (e.g. event completed or public event notice) -->
+      <div id="form-status-notice" style="display: none;"></div>
+
+      <form id="event-registration-form" class="club-form">
+        <div>
+          <label for="fullname" data-i18n="label_fullname">Full Name:</label>
+          <input type="text" id="fullname" name="fullname" placeholder="e.g. Massil Ammari" data-i18n-placeholder="ph_event_fullname" autocomplete="name" required>
+        </div>
+
+        <div>
+          <label for="email" data-i18n="label_email">Email Address:</label>
+          <input type="email" id="email" name="email" placeholder="e.g. massil@example.com" data-i18n-placeholder="ph_event_email" autocomplete="email" required>
+        </div>
+
+        <div>
+          <label for="phone"><span data-i18n="label_phone">Phone Number:</span> <span class="optional-tag" data-i18n="tag_optional">(Optional)</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 0661234567" data-i18n-placeholder="ph_phone" inputmode="tel" autocomplete="tel">
+        </div>
+
+        <div>
+          <label for="faculty" data-i18n="label_faculty">Faculty / Specialty:</label>
+          <input type="text" id="faculty" name="faculty" placeholder="e.g. NTIC / Exact Sciences" data-i18n-placeholder="ph_faculty" required>
+        </div>
+
+        <div>
+          <label for="why_interested"><span data-i18n="label_why_interested">Why are you interested?:</span> <span class="optional-tag" data-i18n="tag_optional">(Optional)</span></label>
+          <input type="text" id="why_interested" name="why_interested" placeholder="e.g. Excited to participate!" data-i18n-placeholder="ph_why_interested" maxlength="150">
+        </div>
+
+        <hr class="custom-divider">
+
+        <div id="dynamic-fields-container">
+          <p class="loading-msg" data-i18n="loading_questions">Loading event questions...</p>
+        </div>
+
+        <button type="submit" id="submit-btn" data-i18n="btn_confirm_event_reg">Confirm Event Registration</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p data-i18n="footer_copy">&copy; 2026 Debug Club. All rights reserved.</p>
+  </footer>
+
+  <!-- Application Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>
